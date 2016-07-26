@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				<h1> Would you like to arrange a 'Pokemon Go' adventure? </h1>
+				{% if message %}
+				<h1> {{ message }} </h1>
+				{% else %}
+					<form action="{% url 'event_create' %}" method="post">
+						{% csrf_token %}
+						{% for field in form %}
+						<div class='form-group'>
+							{{ field.label_tag }} {{ field }}
+						</div>
+						{% endfor %}
+						<input class='btn btn-success' type="submit" value="Submit" />
+					</form>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

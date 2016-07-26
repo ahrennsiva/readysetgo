@@ -1,0 +1,34 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				{% if message %}
+					<h1> {{ message }} </h1>
+				{% else %}
+				<h1> Event Arranged By: {{ event.host }} </h1>
+				<form>
+					<fieldset disabled>
+						{% for field in form %}
+						<div class='form-group'>
+							{{ field.label }} {{ field }}
+						</div>
+						{% endfor %}
+					</fieldset>
+				</form>
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class='form-group'>
+						{{ attendee_form.status }}
+					</div>
+					<input class='btn btn-success' type="submit" value="Submit" />
+				</form>
+				{% endif %}
+				<input class='btn btn-warning' type="button" onclick="location.href='{% url 'event_search' %}';" value="Searching for a new adventure?"/>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>READY,SET,GO!</title>
+
+		<link rel="stylesheet" href="{% static 'web/css/style.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}" type="text/css" media="screen" />
+
+		<link rel="stylesheet" href="{% static 'web/css/upe/header_style.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/upe/footer_style.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/upe/hover.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/upe/main_style.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/upe/full_style.css' %}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="{% static 'web/css/upe/slider_custom.css' %}" type="text/css" media="screen" />
+
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700' type='text/css'>
+		{% block stylesheets %}
+		{% endblock %}
+		<script src="{% static 'web/js/jquery_1.11.1.min.js' %}"></script>
+		{% block javascript %}
+		{% endblock %}
+	</head>
+	<body>
+		<!-- HEADER -->
+		<div id="header-wrapper">
+			<div id="header-content">
+				<ul class="nav">
+					<li id="brand-section">
+					<a href="/"><img id="header-icon" src="{% static 'web/img/pkmngo-logo-white.png' %}" alt="Ready, Set, Go!"><span id="brand">Ready,Set, Go!</span></a>
+					</li>
+					<li class="header-section pull-right">
+					{% if user.is_authenticated %}
+					<a href="{% url 'user_logout' %}">Logout</a>
+					{% else %}
+					<!-- <a href="/register">Register</a> -->
+					{% endif %}
+					</li>
+					<li class="header-section pull-right">
+					{% if user.is_authenticated %}						
+					<a href="{% url 'my_events' %}">My Events</a>
+					{% else %}
+					<!-- <a href="/register">Register</a> -->
+					{% endif %}
+					</li>										
+					<li class="header-section pull-right">
+					{% if user.is_authenticated %}
+					<a href="#">{{ user.name_first }} {{ user.name_last }}</a>
+					{% else %}
+					<!-- <a href="/login">Login</a> -->
+					{% endif %}
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- ENDS HEADER -->
+		<div id="main-content-wrapper">
+			<div class="content-container">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

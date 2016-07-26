@@ -1,0 +1,31 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id='login'>
+	<!-- MAIN -->
+	<div id="main-wrapper">
+		<div id="main-inner-wrapper">
+			<div id="content-wrapper">
+				<div id="content-header-wrapper">
+					{% if next %}
+					<form action="{% url 'user_login' %}?next={{next}}" method="post">
+						{% else %}
+						<form action="{% url 'main' %}" method="post">
+							{% endif %}
+							<h1>{{ message }} <!-- Logout successful messgage --> </h1>
+							{% csrf_token %}
+							{% for field in form %}
+							<div class='form-group'>
+								{{ field.label_tag }} {{ field }}
+							</div>
+							{% endfor %}
+							<input class='btn btn-success' type="submit" value="Login" />
+						</form>
+						<input class='btn btn-info' type="button" onclick="location.href='{% url 'new_user' %}';" value="New User?"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ENDS MAIN -->
+	</div>
+	{% endblock content %}

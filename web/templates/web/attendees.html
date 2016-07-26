@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				<h1> Members Attending: </h1>
+				{% if message %}
+				<h1> {{ message }} </h1>
+				{% else %}
+					{% if formsetnum %}
+					<form action="{% url 'attendees' event.id %}" method="post">
+						{% csrf_token %}
+							<table>
+								{{ formset }}
+							</table>
+						<input class='btn btn-success' type="submit" value="Update" />
+					</form>
+				{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

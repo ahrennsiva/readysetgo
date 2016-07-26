@@ -1,0 +1,45 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				<h1> Arranged Events </h1>
+				<table class='table table-hover'>
+					<thead>
+						<tr>
+							<th> Location </th>
+							<th> Time </th>
+							<th> Date </th>
+							<th> Number Attending </th>
+							<th> Capacity </th>
+							<th> Notes </th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for event in events %}
+					<tr onclick="location.href='{{ event.id }}'">
+						<a href="{{ event.id }}"> 
+						<td> {{ event.location }} </td>
+						<td> {{ event.start_time }} </td>
+						<td> {{ event.start_date }} </td>
+						<td> {{ event.num_confirmed }} </td>
+						<td> {{ event.capacity }} </td>
+						<td> {{ event.notes }} </td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+				<!--
+<ul>
+{% for event in events %}
+<li><a href="{{ event.id }}"> {{ event }} </a></li>
+{% endfor %}
+</ul>
+	-->
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

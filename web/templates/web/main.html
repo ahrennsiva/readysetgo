@@ -1,0 +1,14 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				<input class='btn btn-success' type="button" onclick="location.href='{% url 'event_create' %}';" value="Create"/>
+				<input class='btn btn-info' type="button" onclick="location.href='{% url 'event_search' %}';" value="Search"/>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

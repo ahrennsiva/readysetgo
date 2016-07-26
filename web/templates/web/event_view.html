@@ -1,0 +1,28 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- Draft up of event creation form for host-->
+<div id="main-wrapper">
+	<div id="main-inner-wrapper">
+		<div id="content-wrapper">
+			<div id="content-header-wrapper">
+				{% if message %}
+				<h1>	{{ message }} </h1>
+					<input class='btn btn-info' type="button" onclick="location.href='{% url 'my_events' %}';" value="My Events"/>
+				{% else %}
+				<form action="{% url 'my_events' %}{{ event.id }}" method="post">
+					{% csrf_token %}
+					{% for field in form %}
+					<div class='form-group'>
+						{{ field.label_tag }} {{ field }}
+					</div>
+					{% endfor %}
+					<input class='btn btn-success' type="submit" value="Submit" />
+				</form>
+				<input class='btn btn-info' type="button" onclick="location.href='{% url 'my_events' %}{{ event.id }}/attendees';" value="Attendees"/>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
